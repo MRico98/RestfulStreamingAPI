@@ -7,8 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import lombok.Getter;
@@ -36,9 +42,10 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @Column
-    @JsonIgnore
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "role")
+    @JsonManagedReference
+    private Role role;
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
