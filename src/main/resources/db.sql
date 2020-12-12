@@ -77,3 +77,9 @@ ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_video`) REFERENCES `vide
 ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id_tag`);
+
+LOCK TABLES `roles` WRITE;
+
+INSERT INTO `roles` VALUES (1,'USER'),(2,'ADMIN');
+
+UNLOCK TABLES;

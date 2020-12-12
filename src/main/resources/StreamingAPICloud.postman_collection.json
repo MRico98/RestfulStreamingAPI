@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "88ba1360-34e8-4be1-b5f9-4365fa179e21",
+		"name": "StreamingAPICloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"correo@uady\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Endpoint para el inicio de sesión del usuario."
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDg5NSwiZXhwIjoxNjA3ODAxMTk1fQ.bm-P-P0D9SWH0KdRHXEmhqO5mHFnXcZ-ryvMoFk4iZvGAkSC8A32_3kk0vYYxsVPyh7JHl_2-bOxWRwvUjt5EA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users/1",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Role User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/roleUser",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"roleUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Role Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/roleAdmin",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"roleAdmin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "10a1fe01-3b94-4710-9e06-1725d9152a80",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d67b8d1d-bd41-418d-ba0c-29859667ef7a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cbfc7897-e6dd-481f-ad4d-39e753770363",
+			"key": "BASE_URL",
+			"value": "localhost:8080/api"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
