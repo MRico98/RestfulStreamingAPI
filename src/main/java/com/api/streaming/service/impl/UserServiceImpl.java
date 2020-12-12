@@ -32,15 +32,14 @@ public class UserServiceImpl implements UserService {
             token.setToken(jwtTokenUtil.generateToken(user));
             return token;
         }
-        throw new NotFoundException();
+        throw new NotFoundException("El usuario no fue encontrado");
     }
 
     @Override
     public User getUser(Integer id) {
         Optional<User> opt = userRepository.findById(id);
         if (opt.isPresent()) {
-            User user = opt.get();
-            return user;
+            return opt.get();
         }
         throw new NotFoundException();
     }
