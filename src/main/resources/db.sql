@@ -26,11 +26,6 @@ CREATE TABLE `videos` (
   PRIMARY KEY (`id_video`, `autor`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `tags` (
-  `id_tag` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `user_ratings` (
   `id_user` int,
   `id_video` int,
@@ -41,9 +36,9 @@ CREATE TABLE `user_ratings` (
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `videos_clasifications` (
-  `id_tag` int,
   `id_video` int,
-  PRIMARY KEY (`id_tag`, `id_video`)
+  `tag` varchar(50),
+  PRIMARY KEY (`id_video`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_recommendations` (
@@ -54,8 +49,8 @@ CREATE TABLE `user_recommendations` (
 
 CREATE TABLE `user_preferences_tags` (
   `id_user` int,
-  `id_tag` int,
-  PRIMARY KEY (`id_user`, `id_tag`)
+  `tag` varchar(50),
+  PRIMARY KEY (`id_user`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `users` ADD FOREIGN KEY (`role`) REFERENCES `roles` (`id_role`);
@@ -66,8 +61,6 @@ ALTER TABLE `user_ratings` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_u
 
 ALTER TABLE `user_ratings` ADD FOREIGN KEY (`id_video`) REFERENCES `videos` (`id_video`);
 
-ALTER TABLE `videos_clasifications` ADD FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id_tag`);
-
 ALTER TABLE `videos_clasifications` ADD FOREIGN KEY (`id_video`) REFERENCES `videos` (`id_video`);
 
 ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
@@ -75,8 +68,6 @@ ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_user`) REFERENCES `users
 ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_video`) REFERENCES `videos` (`id_video`);
 
 ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
-ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id_tag`);
 
 LOCK TABLES `roles` WRITE;
 
