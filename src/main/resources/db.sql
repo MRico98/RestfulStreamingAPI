@@ -20,7 +20,7 @@ CREATE TABLE `videos` (
   `id_video` varchar(255),
   `titulo` varchar(255),
   `autor` int,
-  `average_rating` float,
+  `average_rating` float default 0,
   `created_at` timestamp,
   `video_location` text,
   PRIMARY KEY (`id_video`)
@@ -72,6 +72,6 @@ ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_user`) REFERENCES `user
 LOCK TABLES `roles` WRITE;
 
 INSERT INTO `roles` VALUES (1,'USER'),(2,'ADMIN');
-INSERT INTO 'users'(name,email,password,role,create_at,update_at) VALUES ("rico","ManuelRico98@outlook.es","root",1,"2021-01-01 00:00:00","2021-01-01 00:00:00")
+INSERT INTO `users` (name,email,password,role,created_at,updated_at) VALUES ("rico","ManuelRico98@outlook.es","root",1,"2021-01-01 00:00:00","2021-01-01 00:00:00");
 
 UNLOCK TABLES;
