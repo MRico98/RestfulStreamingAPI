@@ -43,13 +43,16 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public void storeVideo(VideoUploadRequest request){
-        if(!Objects.equals(FilenameUtils.getExtension(request.getVideo().getOriginalFilename()), ".mp4")){
+    public Video storeVideo(VideoUploadRequest request){
+        String extension = FilenameUtils.getExtension(request.getVideo().getOriginalFilename());
+        if(!extension.equalsIgnoreCase("mp4")){
             throw new IncorrectFileException();
         }
         String videoId = TokenGenerator.generadorTokens();
         storageProcess(request.getVideo(),videoId);
-        videoRepository.save(createVideoEntity(request.getTitulo(),videoId));
+        Video newVideo = createVideoEntity(request.getTitulo(),videoId);
+        videoRepository.save(newVideo);
+        return newVideo;
     }
 
     private Video createVideoEntity(String titulo,String videoId){
