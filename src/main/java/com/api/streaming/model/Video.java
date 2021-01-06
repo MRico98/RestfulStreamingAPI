@@ -1,5 +1,6 @@
 package com.api.streaming.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,4 +41,7 @@ public class Video {
     @Column(name = "video_location")
     private String locacion;
 
+    @OneToMany(mappedBy = "id_video")
+    @JsonBackReference
+    private List<VideoClasification> videosClasification;
 }
