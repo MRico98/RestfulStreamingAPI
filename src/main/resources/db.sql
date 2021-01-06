@@ -36,9 +36,9 @@ CREATE TABLE `user_ratings` (
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `videos_clasifications` (
+    `id_videos_clasifications` int PRIMARY KEY AUTO_INCREMENT,
   `id_video` varchar(255),
-  `tag` varchar(50),
-  PRIMARY KEY (`id_video`)
+  `tag` varchar(50)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_recommendations` (
@@ -70,6 +70,7 @@ ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_video`) REFERENCES `vide
 ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 LOCK TABLES `roles` WRITE;
+LOCK TABLES `users` WRITE;
 
 INSERT INTO `roles` VALUES (1,'USER'),(2,'ADMIN');
 INSERT INTO `users` (name,email,password,role,created_at,updated_at) VALUES ("rico","ManuelRico98@outlook.es","root",1,"2021-01-01 00:00:00","2021-01-01 00:00:00");
