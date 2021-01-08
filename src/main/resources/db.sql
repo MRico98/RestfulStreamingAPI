@@ -70,9 +70,8 @@ ALTER TABLE `user_recommendations` ADD FOREIGN KEY (`id_video`) REFERENCES `vide
 ALTER TABLE `user_preferences_tags` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 LOCK TABLES `roles` WRITE;
-LOCK TABLES `users` WRITE;
-
 INSERT INTO `roles` VALUES (1,'USER'),(2,'ADMIN');
+LOCK TABLES `users` WRITE;
 INSERT INTO `users` (name,email,password,role,created_at,updated_at) VALUES ("rico","ManuelRico98@outlook.es","root",1,"2021-01-01 00:00:00","2021-01-01 00:00:00");
 
 UNLOCK TABLES;
