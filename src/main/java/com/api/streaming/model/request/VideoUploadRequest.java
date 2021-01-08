@@ -1,5 +1,6 @@
 package com.api.streaming.model.request;
 
+import com.api.streaming.model.Clasification;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,6 @@ public class VideoUploadRequest {
     @NotNull
     private MultipartFile video;
 
-    private ArrayList<String> clasificaciones;
+    private ArrayList<Clasification> clasificaciones;
 
 }

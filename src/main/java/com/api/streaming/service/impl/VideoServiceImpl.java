@@ -3,8 +3,12 @@ package com.api.streaming.service.impl;
 import com.api.streaming.config.StorageProperties;
 import com.api.streaming.exception.FailChargeException;
 import com.api.streaming.exception.IncorrectFileException;
+import com.api.streaming.model.Clasification;
 import com.api.streaming.model.User;
 import com.api.streaming.model.Video;
+import com.api.streaming.model.VideoClasification;
+import com.api.streaming.service.UserService;
+import com.api.streaming.service.VideoClasificationService;
 import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.repository.UserRepository;
@@ -25,6 +29,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -34,8 +41,12 @@ public class VideoServiceImpl implements VideoService{
 
     @Autowired
     private VideoRepository videoRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+
+    @Autowired
+    private VideoClasificationService videoClasificationService;
 
     @Autowired
     public VideoServiceImpl(StorageProperties storageProperties){
@@ -52,17 +63,22 @@ public class VideoServiceImpl implements VideoService{
         storageProcess(request.getVideo(),videoId);
         Video newVideo = createVideoEntity(request.getTitulo(),videoId);
         videoRepository.save(newVideo);
+        createClasificationEntities(newVideo,request.getClasificaciones());
         return newVideo;
     }
 
-    private Video createVideoEntity(String titulo,String videoId){
+    private Video createVideoEntity(String titulo, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setId(videoId);
-        nuevoVideo.setAutor(userRepository.findById(getActualSessionId()).get());
+        nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
         nuevoVideo.setTitulo(titulo);
         nuevoVideo.setCreatedAt(LocalDateTime.now());
-        nuevoVideo.setLocacion(this.rootLocation.toString());
+        nuevoVideo.setLocacion(this.rootLocation.toString() + videoId + ".mp4");
         return nuevoVideo;
+    }
+
+    private List<VideoClasification> createClasificationEntities(Video video,ArrayList<Clasification> clasificaciones){
+        return videoClasificationService.storeMultipleVideoClasification(video,clasificaciones);
     }
 
     private void storageProcess(MultipartFile video,String videoId) {

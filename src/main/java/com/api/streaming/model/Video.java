@@ -41,7 +41,7 @@ public class Video {
     @Column(name = "video_location")
     private String locacion;
 
-    @OneToMany(mappedBy = "id_video")
+    @OneToMany(mappedBy = "video")
     @JsonBackReference
     private List<VideoClasification> videosClasification;
 }
