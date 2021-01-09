@@ -3,8 +3,8 @@ USE `streaming_api`;
 
 CREATE TABLE `users` (
   `id_user` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255) UNIQUE,
-  `email` varchar(255),
+  `name` varchar(255),
+  `email` varchar(255) UNIQUE,
   `password` varchar(255),
   `role` int,
   `created_at` timestamp,
