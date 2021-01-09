@@ -18,7 +18,11 @@ public class Video {
 
     @Id
     @Column(name = "id_video")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "id_serializable")
+    private String idSerializable;
 
     @Column
     private String titulo;

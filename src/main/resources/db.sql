@@ -1,4 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `streaming_api`;
+DROP DATABASE IF EXISTS `streaming_api`;
+CREATE DATABASE `streaming_api`;
 USE `streaming_api`;
 
 CREATE TABLE `users` (
@@ -17,18 +18,18 @@ CREATE TABLE `roles` (
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `videos` (
-  `id_video` varchar(255),
+  `id_video` int PRIMARY KEY AUTO_INCREMENT,
+  `id_serializable` varchar(255),
   `titulo` varchar(255),
   `autor` int,
   `average_rating` float default 0,
   `created_at` timestamp,
-  `video_location` text,
-  PRIMARY KEY (`id_video`)
+  `video_location` text
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_ratings` (
   `id_user` int,
-  `id_video` varchar(255),
+  `id_video` int,
   `rating` int,
   `created_at` timestamp,
   `updated_at` timestamp,
@@ -37,13 +38,13 @@ CREATE TABLE `user_ratings` (
 
 CREATE TABLE `videos_clasifications` (
     `id_videos_clasifications` int PRIMARY KEY AUTO_INCREMENT,
-  `id_video` varchar(255),
+  `id_video` int,
   `tag` varchar(50)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_recommendations` (
   `id_user` int,
-  `id_video` varchar(255),
+  `id_video` int,
   PRIMARY KEY (`id_user`, `id_video`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
