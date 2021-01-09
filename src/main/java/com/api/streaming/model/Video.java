@@ -2,10 +2,13 @@ package com.api.streaming.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.core.io.support.ResourceRegion;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,4 +46,8 @@ public class Video {
     @OneToMany(mappedBy = "video")
     @JsonBackReference
     private List<VideoClasification> videosClasification;
+
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private ResourceRegion resourceRegion;
 }

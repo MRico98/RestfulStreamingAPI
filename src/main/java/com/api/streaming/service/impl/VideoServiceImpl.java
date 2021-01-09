@@ -11,12 +11,13 @@ import com.api.streaming.service.UserService;
 import com.api.streaming.service.VideoClasificationService;
 import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
-import com.api.streaming.repository.UserRepository;
 import com.api.streaming.repository.VideoRepository;
 import com.api.streaming.service.VideoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.support.ResourceRegion;
+import org.springframework.data.util.Pair;
+import org.springframework.http.HttpRange;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,13 +25,12 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,6 +65,39 @@ public class VideoServiceImpl implements VideoService{
         newVideo = videoRepository.save(newVideo);
         createClasificationEntities(newVideo,request.getClasificaciones());
         return newVideo;
+    }
+
+    @Override
+    public Pair<UrlResource, ResourceRegion> getVideoAndPartialContent(HttpRange rango, String id) {
+        Video newVideoEntity = getVideo(id);
+        UrlResource videoResource = getUrlResourceFromVideo(newVideoEntity.getLocation());
+        ResourceRegion videoRegion = getPartialVideoContent(videoResource,rango);
+        return null;
+    }
+
+    @Override
+    public Video getVideo(String id) {
+        return videoRepository.findById(id).get();
+    }
+
+    private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
+        try {
+            long longitudVideo = video.contentLength();
+            long inicioVideo = rangoVideo.getRangeStart(longitudVideo);
+            long finVideo = rangoVideo.getRangeEnd(longitudVideo);
+            //long recorrido = Math.min();
+            return null;
+        }catch(IOException e){
+            throw new FailChargeException();
+        }
+    }
+
+    private UrlResource getUrlResourceFromVideo(String Ubicacion){
+        try {
+            return new UrlResource("file:" + Ubicacion);
+        }catch(MalformedURLException e){
+            throw new FailChargeException();
+        }
     }
 
     private Video createVideoEntity(String titulo, String videoId){
