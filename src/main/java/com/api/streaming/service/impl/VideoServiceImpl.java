@@ -62,7 +62,7 @@ public class VideoServiceImpl implements VideoService{
         String videoId = TokenGenerator.generadorTokens();
         storageProcess(request.getVideo(),videoId);
         Video newVideo = createVideoEntity(request.getTitulo(),videoId);
-        videoRepository.save(newVideo);
+        newVideo = videoRepository.save(newVideo);
         createClasificationEntities(newVideo,request.getClasificaciones());
         return newVideo;
     }
@@ -72,8 +72,7 @@ public class VideoServiceImpl implements VideoService{
         nuevoVideo.setId(videoId);
         nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
         nuevoVideo.setTitulo(titulo);
-        nuevoVideo.setCreatedAt(LocalDateTime.now());
-        nuevoVideo.setLocacion(this.rootLocation.toString() + videoId + ".mp4");
+        nuevoVideo.setLocation(this.rootLocation.toString() + videoId + ".mp4");
         return nuevoVideo;
     }
 

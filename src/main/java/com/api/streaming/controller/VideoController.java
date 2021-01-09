@@ -17,12 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class VideoController{
 
-    private final VideoService videoService;
 
     @Autowired
-    public VideoController(VideoService videoService){
-        this.videoService = videoService;
-    }
+    private VideoService videoService;
 
     @PostMapping(value = "/videoupload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Video> videoUpload(@ModelAttribute @Valid VideoUploadRequest request){

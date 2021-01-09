@@ -1,12 +1,11 @@
 package com.api.streaming.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,12 +33,12 @@ public class Video {
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
-    @JsonIgnore
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
     private LocalDateTime createdAt;
 
     @Lob
     @Column(name = "video_location")
-    private String locacion;
+    private String location;
 
     @OneToMany(mappedBy = "video")
     @JsonBackReference
