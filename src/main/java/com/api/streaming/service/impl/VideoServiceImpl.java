@@ -102,7 +102,7 @@ public class VideoServiceImpl implements VideoService{
 
     private Video createVideoEntity(String titulo, String videoId){
         Video nuevoVideo = new Video();
-        nuevoVideo.setId(videoId);
+        nuevoVideo.setIdSerializable(videoId);
         nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
         nuevoVideo.setTitulo(titulo);
         nuevoVideo.setLocation(this.rootLocation.toString() + videoId + ".mp4");
