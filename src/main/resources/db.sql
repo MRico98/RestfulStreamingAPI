@@ -1,4 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `streaming_api`;
+DROP DATABASE IF EXISTS `streaming_api`;
+CREATE DATABASE `streaming_api`;
 USE `streaming_api`;
 
 CREATE TABLE `users` (
