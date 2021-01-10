@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"correo@uady\",\r\n    \"password\": \"123\"\r\n}",
+					"raw": "{\r\n    \"email\":\"ManuelRico98@outlook.es\",\r\n    \"password\": \"root\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,6 +55,33 @@
 					"path": [
 						"users",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Recommendations (APP 2)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDg5NSwiZXhwIjoxNjA3ODAxMTk1fQ.bm-P-P0D9SWH0KdRHXEmhqO5mHFnXcZ-ryvMoFk4iZvGAkSC8A32_3kk0vYYxsVPyh7JHl_2-bOxWRwvUjt5EA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/generate",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"generate"
 					]
 				}
 			},
@@ -113,13 +140,130 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Upload Video",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoicmljbyIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjEwMjkxMjEzLCJleHAiOjE2MTAyOTE1MTN9.mQvBnNbffSnYq5aTxMa3trZxrASLI7vdbbavO_KKYoC38-Sa4YY6E5opZLB2KXQ2ov1fnqh8M1-iXUfWgn7eLQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "titulo",
+							"value": "TEST4",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/C:/Users/diego/Downloads/sd.mp4"
+						},
+						{
+							"key": "clasificaciones",
+							"value": "COMEDIA",
+							"type": "text"
+						},
+						{
+							"key": "clasificaciones",
+							"value": "PORNO",
+							"type": "text"
+						},
+						{
+							"key": "clasificaciones",
+							"value": "TERROR",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/videoupload",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"videoupload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"DiegoAvmor\",\r\n    \"email\": \"correo@uady.com.mx\",\r\n    \"password\": \"gordito25\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/register",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Recommendations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoicmljbyIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjEwMjkyMDczLCJleHAiOjE2MTAyOTIzNzN9.safGkCeqqbFxBy6eQYDAs46vGeh6Co51WqrpNvVYSjj1ElAnDGnl-jLllP0cFsR43KK6F78bzhf9-PxURBAoLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users/:id/recomendations",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users",
+						":id",
+						"recomendations"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "10a1fe01-3b94-4710-9e06-1725d9152a80",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -129,7 +273,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d67b8d1d-bd41-418d-ba0c-29859667ef7a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -139,10 +282,8 @@
 	],
 	"variable": [
 		{
-			"id": "cbfc7897-e6dd-481f-ad4d-39e753770363",
 			"key": "BASE_URL",
 			"value": "localhost:8080/api"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

@@ -1,10 +1,11 @@
 package com.api.streaming.service;
 
 import com.api.streaming.model.User;
+import com.api.streaming.model.UserRecommendation;
 import com.api.streaming.model.dto.TokenDto;
 import com.api.streaming.model.request.LoginUserRequest;
 import com.api.streaming.model.request.RegisterUserRequest;
-import com.api.streaming.model.Clasification;
+import java.util.List;
 
 
 public interface UserService {
@@ -14,5 +15,5 @@ public interface UserService {
 
     public User registerUser(RegisterUserRequest request);
 
-    public String getRecommendations(Integer id);
+    public List<UserRecommendation> getRecommendations(Integer id);
 }
