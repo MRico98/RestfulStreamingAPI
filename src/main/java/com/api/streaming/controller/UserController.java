@@ -1,10 +1,14 @@
 package com.api.streaming.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.api.streaming.model.User;
+import com.api.streaming.model.UserRecommendation;
 import com.api.streaming.model.dto.TokenDto;
 import com.api.streaming.model.request.LoginUserRequest;
+import com.api.streaming.model.request.RegisterUserRequest;
 import com.api.streaming.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,11 @@ public class UserController {
         return ResponseEntity.ok().body(userService.loadUser(request));
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody @Valid RegisterUserRequest request){
+        return ResponseEntity.ok().body(userService.registerUser(request));
+    }
+
     /*Ejemplos de seguridad por roles*/
 
     //Cualquiera puede hacer uso del endpoint
@@ -49,6 +58,12 @@ public class UserController {
     @GetMapping("/roleAdmin")
     public ResponseEntity<String> adminExample(){
         return ResponseEntity.ok().body("Only Admins can see this");
+    }
+
+    //Endpoint Recomendaciones
+    @GetMapping("/users/{id}/recomendations")
+    public ResponseEntity<List<UserRecommendation>> getRecommendation(@PathVariable Integer id){
+        return ResponseEntity.ok().body(userService.getRecommendations(id));
     }
 
     

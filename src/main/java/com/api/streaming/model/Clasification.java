@@ -4,3 +4,5 @@ public enum Clasification
 {
     COMEDIA,TERROR,SUSPENSO,DRAMA,PORNO
 }
+
+//["COMEDIA","TERROR","SUSPENSO","DRAMA","PORNO"]
