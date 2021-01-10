@@ -1,6 +1,7 @@
 package com.api.streaming.service.impl;
 
 import com.api.streaming.config.StorageProperties;
+import com.api.streaming.controller.VideoController;
 import com.api.streaming.exception.FailChargeException;
 import com.api.streaming.exception.IncorrectFileException;
 import com.api.streaming.model.Clasification;
@@ -13,6 +14,8 @@ import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.repository.VideoRepository;
 import com.api.streaming.service.VideoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
@@ -37,7 +40,12 @@ import java.util.Objects;
 @Service
 public class VideoServiceImpl implements VideoService{
 
+    Logger logger = LoggerFactory.getLogger(VideoServiceImpl.class);
+
     private final Path rootLocation;
+
+    private static final int KB = 1024;
+    private static final int MB = 1048576;
 
     @Autowired
     private VideoRepository videoRepository;
@@ -70,25 +78,28 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public Pair<UrlResource, ResourceRegion> getVideoAndPartialContent(HttpRange rango, String id) {
         Video newVideoEntity = getVideo(id);
+        logger.info(newVideoEntity.getLocation());
         UrlResource videoResource = getUrlResourceFromVideo(newVideoEntity.getLocation());
         ResourceRegion videoRegion = getPartialVideoContent(videoResource,rango);
-        return null;
+        return Pair.of(videoResource,videoRegion);
     }
 
     @Override
     public Video getVideo(String id) {
-        return videoRepository.findById(id).get();
+        return videoRepository.findByIdSerializable(id).get();
     }
 
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
         try {
             long longitudVideo = video.contentLength();
+            if(rangoVideo == null) rangoVideo = HttpRange.createByteRange(0,KB);
             long inicioVideo = rangoVideo.getRangeStart(longitudVideo);
             long finVideo = rangoVideo.getRangeEnd(longitudVideo);
-            //long recorrido = Math.min();
-            return null;
+            long recorrido = Math.max(KB,finVideo - inicioVideo + 1);
+            recorrido = Math.min(MB,recorrido);
+            return new ResourceRegion(video,inicioVideo,recorrido);
         }catch(IOException e){
-            throw new FailChargeException();
+            throw new FailChargeException("fallo al obtener el contenido parcial del video:" + video.getFilename());
         }
     }
 
@@ -96,7 +107,7 @@ public class VideoServiceImpl implements VideoService{
         try {
             return new UrlResource("file:" + Ubicacion);
         }catch(MalformedURLException e){
-            throw new FailChargeException();
+            throw new FailChargeException("fallo en get url resource");
         }
     }
 
@@ -105,7 +116,7 @@ public class VideoServiceImpl implements VideoService{
         nuevoVideo.setIdSerializable(videoId);
         nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
         nuevoVideo.setTitulo(titulo);
-        nuevoVideo.setLocation(this.rootLocation.toString() + videoId + ".mp4");
+        nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
         return nuevoVideo;
     }
 
@@ -120,7 +131,7 @@ public class VideoServiceImpl implements VideoService{
             InputStream inputStream = video.getInputStream();
             Files.copy(inputStream,destinationFile,StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new FailChargeException();
+            throw new FailChargeException("fallo en storage process");
         }
     }
 

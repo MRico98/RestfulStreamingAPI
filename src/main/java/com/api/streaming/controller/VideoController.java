@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import com.api.streaming.model.Video;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.service.VideoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
@@ -25,8 +27,8 @@ public class VideoController{
     }
 
     @GetMapping("/watch")
-    public ResponseEntity<ResourceRegion> watchVideo(@RequestHeader("Range") HttpRange rango, @RequestParam String id){
-        Pair<UrlResource,ResourceRegion> videoContent = videoService.getVideoAndPartialContent(rango,id);
+    public ResponseEntity<ResourceRegion> watchVideo(@RequestHeader HttpHeaders headers, @RequestParam String id){
+        Pair<UrlResource,ResourceRegion> videoContent = videoService.getVideoAndPartialContent(headers.getRange().get(0),id);
         return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
                 .contentType(MediaTypeFactory.getMediaType(videoContent.getFirst()).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(videoContent.getSecond());
