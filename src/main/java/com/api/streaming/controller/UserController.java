@@ -1,8 +1,11 @@
 package com.api.streaming.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.api.streaming.model.User;
+import com.api.streaming.model.UserRecommendation;
 import com.api.streaming.model.dto.TokenDto;
 import com.api.streaming.model.request.LoginUserRequest;
 import com.api.streaming.model.request.RegisterUserRequest;
@@ -59,7 +62,7 @@ public class UserController {
 
     //Endpoint Recomendaciones
     @GetMapping("/users/{id}/recomendations")
-    public ResponseEntity<String> getRecommendation(@PathVariable Integer id){
+    public ResponseEntity<List<UserRecommendation>> getRecommendation(@PathVariable Integer id){
         return ResponseEntity.ok().body(userService.getRecommendations(id));
     }
 

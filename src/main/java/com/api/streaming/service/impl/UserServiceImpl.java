@@ -1,5 +1,6 @@
 package com.api.streaming.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.text.html.Option;
@@ -8,9 +9,11 @@ import com.api.streaming.exception.NotFoundException;
 import com.api.streaming.exception.AlreadyRegistered;
 import com.api.streaming.model.User;
 import com.api.streaming.model.UserPreferencesTags;
+import com.api.streaming.model.UserRecommendation;
 import com.api.streaming.model.dto.TokenDto;
 import com.api.streaming.model.request.LoginUserRequest;
 import com.api.streaming.model.request.RegisterUserRequest;
+import com.api.streaming.repository.RecommendationRepository;
 import com.api.streaming.repository.RolesRepository;
 import com.api.streaming.repository.UserPreferencesTagsRepository;
 import com.api.streaming.repository.UserRepository;
@@ -32,7 +35,10 @@ public class UserServiceImpl implements UserService {
     private RolesRepository rolesRepository; 
 
     @Autowired
-    private UserPreferencesTagsRepository userPreferencesTagsRepository; 
+    private UserPreferencesTagsRepository userPreferencesTagsRepository;
+
+    @Autowired
+    private RecommendationRepository recommendationRepository;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -84,12 +90,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getRecommendations(Integer id){
-        Optional<UserPreferencesTags> tags = userPreferencesTagsRepository.findById(id);
-        if(tags.isPresent()){
+    public List<UserRecommendation> getRecommendations(Integer id){
+
+        Optional<List<UserRecommendation>> recommendations = recommendationRepository.findByIdUser(id);
+        if(recommendations.isPresent()){
             //Solo devuelvo el string, no está como array
-            return tags.get().getTag();
+            return recommendations.get();
         }
-        throw new NotFoundException("No se encontraron tags asociadas al usuario");
+        throw new NotFoundException("No se recommendaciones asociadas al usuario");
     }
 }
