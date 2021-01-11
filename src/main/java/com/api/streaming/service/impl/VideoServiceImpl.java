@@ -15,6 +15,8 @@ import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.repository.VideoRepository;
 import com.api.streaming.service.VideoService;
+import com.api.streaming.util.UserUtil;
+import org.jose4j.jwk.Use;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,16 +97,10 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public Video deleteVideo(String id) {
         Video videoToEliminate = videoRepository.findByIdSerializable(id).get();
-        checkUserAuthorization(getActualSession(),videoToEliminate);
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(),videoToEliminate);
         videoRepository.deleteVideoByIdSerializable(id);
         return videoToEliminate;
     }
-
-    private void checkUserAuthorization(User actualUser,Video video){
-        if(!actualUser.getRole().getName().equals("ADMIN") && !actualUser.getId().equals(video.getAutor().getId())){
-            throw new AccessDeniedException("El usuario no tiene permitido eliminar este video");
-        }
-    };
 
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
         try {
@@ -131,7 +127,7 @@ public class VideoServiceImpl implements VideoService{
     private Video createVideoEntity(String titulo, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setIdSerializable(videoId);
-        nuevoVideo.setAutor(userService.getUser(getActualSession().getId()));
+        nuevoVideo.setAutor(userService.getUser(UserUtil.getActualSession().getId()));
         nuevoVideo.setTitulo(titulo);
         nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
         return nuevoVideo;
@@ -152,8 +148,4 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private User getActualSession(){
-        User actualUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return actualUser;
-    }
 }
