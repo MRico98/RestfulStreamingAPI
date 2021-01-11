@@ -51,7 +51,4 @@ public class Video {
     @JsonBackReference
     private List<VideoClasification> videosClasification;
 
-    @Transient
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private ResourceRegion resourceRegion;
 }
