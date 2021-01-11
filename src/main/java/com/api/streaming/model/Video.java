@@ -47,7 +47,7 @@ public class Video {
     @Column(name = "video_location")
     private String location;
 
-    @OneToMany(mappedBy = "video")
+    @OneToMany(mappedBy = "video",cascade = CascadeType.REMOVE)
     @JsonBackReference
     private List<VideoClasification> videosClasification;
 

@@ -12,6 +12,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
 import org.springframework.data.util.Pair;
 import org.springframework.http.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,6 +33,11 @@ public class VideoController{
         return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
                 .contentType(MediaTypeFactory.getMediaType(videoContent.getFirst()).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(videoContent.getSecond());
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Video> deleteVideo(@RequestParam String id){
+        return ResponseEntity.status(HttpStatus.OK).body(videoService.deleteVideo(id));
     }
 
 }

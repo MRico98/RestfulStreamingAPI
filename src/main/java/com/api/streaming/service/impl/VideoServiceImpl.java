@@ -2,6 +2,7 @@ package com.api.streaming.service.impl;
 
 import com.api.streaming.config.StorageProperties;
 import com.api.streaming.controller.VideoController;
+import com.api.streaming.exception.AccessDeniedException;
 import com.api.streaming.exception.FailChargeException;
 import com.api.streaming.exception.IncorrectFileException;
 import com.api.streaming.model.Clasification;
@@ -23,9 +24,11 @@ import org.springframework.data.util.Pair;
 import org.springframework.http.HttpRange;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -89,6 +92,20 @@ public class VideoServiceImpl implements VideoService{
         return videoRepository.findByIdSerializable(id).get();
     }
 
+    @Override
+    public Video deleteVideo(String id) {
+        Video videoToEliminate = videoRepository.findByIdSerializable(id).get();
+        checkUserAuthorization(getActualSession(),videoToEliminate);
+        videoRepository.deleteVideoByIdSerializable(id);
+        return videoToEliminate;
+    }
+
+    private void checkUserAuthorization(User actualUser,Video video){
+        if(!actualUser.getRole().getName().equals("ADMIN") && !actualUser.getId().equals(video.getAutor().getId())){
+            throw new AccessDeniedException("El usuario no tiene permitido eliminar este video");
+        }
+    };
+
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
         try {
             long longitudVideo = video.contentLength();
@@ -114,7 +131,7 @@ public class VideoServiceImpl implements VideoService{
     private Video createVideoEntity(String titulo, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setIdSerializable(videoId);
-        nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
+        nuevoVideo.setAutor(userService.getUser(getActualSession().getId()));
         nuevoVideo.setTitulo(titulo);
         nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
         return nuevoVideo;
@@ -135,8 +152,8 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private int getActualSessionId(){
+    private User getActualSession(){
         User actualUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return actualUser.getId();
+        return actualUser;
     }
 }
