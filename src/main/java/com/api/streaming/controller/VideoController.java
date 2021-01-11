@@ -21,7 +21,7 @@ public class VideoController{
     @Autowired
     private VideoService videoService;
 
-    @PostMapping(value = "/videoupload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Video> videoUpload(@ModelAttribute @Valid VideoUploadRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(videoService.storeVideo(request));
     }
