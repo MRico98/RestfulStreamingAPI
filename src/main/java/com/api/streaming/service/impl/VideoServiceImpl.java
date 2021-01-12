@@ -107,6 +107,7 @@ public class VideoServiceImpl implements VideoService{
     public Video editVideo(VideoEditRequest videoEditRequest) {
         Video videoToEdit = getVideo(videoEditRequest.getId());
         videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(), videoToEdit);
         //get object refererence and not database entity
         Video videoReference = videoRepository.getOne(videoToEdit.getId());
         videoReference = setVideoReferenceValues(videoReference,videoEditRequest);
