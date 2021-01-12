@@ -3,6 +3,7 @@ package com.api.streaming.controller;
 import javax.validation.Valid;
 
 import com.api.streaming.model.Video;
+import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.service.VideoService;
 import org.slf4j.Logger;
@@ -33,5 +34,11 @@ public class VideoController{
                 .contentType(MediaTypeFactory.getMediaType(videoContent.getFirst()).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(videoContent.getSecond());
     }
+
+    @PutMapping
+    public ResponseEntity<Video> editVideo(@RequestBody @Valid VideoEditRequest videoEditRequest){
+        return ResponseEntity.ok().body(videoService.editVideo(videoEditRequest));
+    }
+
 
 }

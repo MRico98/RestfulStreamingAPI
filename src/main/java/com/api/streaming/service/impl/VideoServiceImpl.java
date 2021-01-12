@@ -8,6 +8,7 @@ import com.api.streaming.model.Clasification;
 import com.api.streaming.model.User;
 import com.api.streaming.model.Video;
 import com.api.streaming.model.VideoClasification;
+import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.service.UserService;
 import com.api.streaming.service.VideoClasificationService;
 import com.api.streaming.util.TokenGenerator;
@@ -87,6 +88,25 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public Video getVideo(String id) {
         return videoRepository.findByIdSerializable(id).get();
+    }
+
+    @Override
+    public Video editVideo(VideoEditRequest videoEditRequest) {
+        Video videoToEdit = getVideo(videoEditRequest.getId());
+        videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
+        //get object refererence and not database entity
+        Video videoReference = videoRepository.getOne(videoToEdit.getId());
+        videoReference = setVideoReferenceValues(videoReference,videoEditRequest);
+        return videoRepository.save(videoReference);
+    }
+
+    private Video setVideoReferenceValues(Video videoReference,VideoEditRequest videoEditRequest){
+        if(videoEditRequest.getDescription() != null) videoReference.setDescription(videoEditRequest.getDescription());
+        if(videoEditRequest.getTitulo() != null) videoReference.setTitulo(videoEditRequest.getTitulo());
+        if(videoEditRequest.getClasificaciones() != null) videoReference.
+                setVideosClasification(videoClasificationService.
+                        storeMultipleVideoClasification(videoReference,videoEditRequest.getClasificaciones()));
+        return videoReference;
     }
 
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){

@@ -29,4 +29,9 @@ public class VideoClasificationServiceImpl implements VideoClasificationService 
         return videoClasifications;
     }
 
+    @Override
+    public void deleteMultipleVideoClasification(Integer id) {
+        videoClasificationRepository.deleteByVideoId(id);
+    }
+
 }
