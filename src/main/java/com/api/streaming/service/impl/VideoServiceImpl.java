@@ -98,9 +98,10 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public Video deleteVideo(String id) {
         Video videoToEliminate = videoRepository.findByIdSerializable(id).get();
-        UserUtil.checkUserAuthorization(UserUtil.getActualSession(),videoToEliminate);
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(), videoToEliminate);
         videoRepository.deleteVideoByIdSerializable(id);
         return videoToEliminate;
+    }
       
     @Override
     public Video editVideo(VideoEditRequest videoEditRequest) {
