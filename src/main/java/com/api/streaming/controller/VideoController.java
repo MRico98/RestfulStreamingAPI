@@ -13,6 +13,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
 import org.springframework.data.util.Pair;
 import org.springframework.http.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,11 +35,15 @@ public class VideoController{
                 .contentType(MediaTypeFactory.getMediaType(videoContent.getFirst()).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(videoContent.getSecond());
     }
+  
+    @DeleteMapping("/delete")
+    public ResponseEntity<Video> deleteVideo(@RequestParam String id){
+        return ResponseEntity.status(HttpStatus.OK).body(videoService.deleteVideo(id));
+    }
 
     @PutMapping
     public ResponseEntity<Video> editVideo(@RequestBody @Valid VideoEditRequest videoEditRequest){
         return ResponseEntity.ok().body(videoService.editVideo(videoEditRequest));
     }
-
 
 }

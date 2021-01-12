@@ -2,6 +2,7 @@ package com.api.streaming.service.impl;
 
 import com.api.streaming.config.StorageProperties;
 import com.api.streaming.controller.VideoController;
+import com.api.streaming.exception.AccessDeniedException;
 import com.api.streaming.exception.FailChargeException;
 import com.api.streaming.exception.IncorrectFileException;
 import com.api.streaming.model.Clasification;
@@ -15,6 +16,8 @@ import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.repository.VideoRepository;
 import com.api.streaming.service.VideoService;
+import com.api.streaming.util.UserUtil;
+import org.jose4j.jwk.Use;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +27,11 @@ import org.springframework.data.util.Pair;
 import org.springframework.http.HttpRange;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -91,6 +96,13 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
+    public Video deleteVideo(String id) {
+        Video videoToEliminate = videoRepository.findByIdSerializable(id).get();
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(),videoToEliminate);
+        videoRepository.deleteVideoByIdSerializable(id);
+        return videoToEliminate;
+      
+    @Override
     public Video editVideo(VideoEditRequest videoEditRequest) {
         Video videoToEdit = getVideo(videoEditRequest.getId());
         videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
@@ -134,7 +146,7 @@ public class VideoServiceImpl implements VideoService{
     private Video createVideoEntity(VideoUploadRequest videoUploadRequest, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setIdSerializable(videoId);
-        nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
+        nuevoVideo.setAutor(userService.getUser(UserUtil.getActualSession().getId()));
         nuevoVideo.setTitulo(videoUploadRequest.getTitulo());
         nuevoVideo.setDescription(videoUploadRequest.getDescription());
         nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
@@ -156,8 +168,4 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private int getActualSessionId(){
-        User actualUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return actualUser.getId();
-    }
 }
