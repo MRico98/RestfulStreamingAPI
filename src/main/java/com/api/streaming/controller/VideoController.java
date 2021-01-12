@@ -3,6 +3,7 @@ package com.api.streaming.controller;
 import javax.validation.Valid;
 
 import com.api.streaming.model.Video;
+import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.service.VideoService;
 import org.slf4j.Logger;
@@ -16,13 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/videos")
 public class VideoController{
 
     @Autowired
     private VideoService videoService;
 
-    @PostMapping(value = "/videoupload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Video> videoUpload(@ModelAttribute @Valid VideoUploadRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(videoService.storeVideo(request));
     }
@@ -34,10 +35,15 @@ public class VideoController{
                 .contentType(MediaTypeFactory.getMediaType(videoContent.getFirst()).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(videoContent.getSecond());
     }
-
+  
     @DeleteMapping("/delete")
     public ResponseEntity<Video> deleteVideo(@RequestParam String id){
         return ResponseEntity.status(HttpStatus.OK).body(videoService.deleteVideo(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<Video> editVideo(@RequestBody @Valid VideoEditRequest videoEditRequest){
+        return ResponseEntity.ok().body(videoService.editVideo(videoEditRequest));
     }
 
 }

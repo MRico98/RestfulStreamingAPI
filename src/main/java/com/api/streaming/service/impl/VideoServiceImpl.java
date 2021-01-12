@@ -9,6 +9,7 @@ import com.api.streaming.model.Clasification;
 import com.api.streaming.model.User;
 import com.api.streaming.model.Video;
 import com.api.streaming.model.VideoClasification;
+import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.service.UserService;
 import com.api.streaming.service.VideoClasificationService;
 import com.api.streaming.util.TokenGenerator;
@@ -74,7 +75,7 @@ public class VideoServiceImpl implements VideoService{
         }
         String videoId = TokenGenerator.generadorTokens();
         storageProcess(request.getVideo(),videoId);
-        Video newVideo = createVideoEntity(request.getTitulo(),videoId);
+        Video newVideo = createVideoEntity(request,videoId);
         newVideo = videoRepository.save(newVideo);
         createClasificationEntities(newVideo,request.getClasificaciones());
         return newVideo;
@@ -100,6 +101,24 @@ public class VideoServiceImpl implements VideoService{
         UserUtil.checkUserAuthorization(UserUtil.getActualSession(),videoToEliminate);
         videoRepository.deleteVideoByIdSerializable(id);
         return videoToEliminate;
+      
+    @Override
+    public Video editVideo(VideoEditRequest videoEditRequest) {
+        Video videoToEdit = getVideo(videoEditRequest.getId());
+        videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
+        //get object refererence and not database entity
+        Video videoReference = videoRepository.getOne(videoToEdit.getId());
+        videoReference = setVideoReferenceValues(videoReference,videoEditRequest);
+        return videoRepository.save(videoReference);
+    }
+
+    private Video setVideoReferenceValues(Video videoReference,VideoEditRequest videoEditRequest){
+        if(videoEditRequest.getDescription() != null) videoReference.setDescription(videoEditRequest.getDescription());
+        if(videoEditRequest.getTitulo() != null) videoReference.setTitulo(videoEditRequest.getTitulo());
+        if(videoEditRequest.getClasificaciones() != null) videoReference.
+                setVideosClasification(videoClasificationService.
+                        storeMultipleVideoClasification(videoReference,videoEditRequest.getClasificaciones()));
+        return videoReference;
     }
 
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
@@ -124,11 +143,12 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private Video createVideoEntity(String titulo, String videoId){
+    private Video createVideoEntity(VideoUploadRequest videoUploadRequest, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setIdSerializable(videoId);
         nuevoVideo.setAutor(userService.getUser(UserUtil.getActualSession().getId()));
-        nuevoVideo.setTitulo(titulo);
+        nuevoVideo.setTitulo(videoUploadRequest.getTitulo());
+        nuevoVideo.setDescription(videoUploadRequest.getDescription());
         nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
         return nuevoVideo;
     }
