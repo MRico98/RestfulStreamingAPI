@@ -35,6 +35,10 @@ public class Video {
     @JsonManagedReference
     private User autor;
 
+    @Lob
+    @Column
+    private String description;
+
     @Column(name = "average_rating")
     private float rating;
 

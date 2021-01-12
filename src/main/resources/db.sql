@@ -22,6 +22,7 @@ CREATE TABLE `videos` (
   `id_serialize` varchar(255),
   `titulo` varchar(255),
   `autor` int,
+  `description` text,
   `average_rating` float default 0,
   `created_at` timestamp,
   `video_location` text

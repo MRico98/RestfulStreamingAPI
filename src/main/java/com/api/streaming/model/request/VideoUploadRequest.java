@@ -17,6 +17,8 @@ public class VideoUploadRequest {
     @NotEmpty
     private String titulo;
 
+    private String description;
+
     @NotNull
     private MultipartFile video;
 
