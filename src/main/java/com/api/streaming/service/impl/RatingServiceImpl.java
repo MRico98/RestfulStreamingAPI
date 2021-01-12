@@ -76,7 +76,7 @@ public class RatingServiceImpl implements RatingService{
         
     }
 
-    public void validateCreateRating(int videoId, int userId){
+    public void validateCreateRating(int userId, int videoId){
         if( !videoRepository.existsById(videoId)){
             throw new NotFoundException("No se encontro el video");
         }
