@@ -13,5 +13,5 @@ public interface VideoService {
     Pair<UrlResource, ResourceRegion> getVideoAndPartialContent(HttpRange rango, String id);
     Video getVideo(String id);
     Video deleteVideo(String id);
-    Video editVideo(VideoEditRequest request);
+    Video editVideo(String id,VideoEditRequest request);
 }

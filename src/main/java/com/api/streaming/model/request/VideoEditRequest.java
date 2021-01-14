@@ -11,9 +11,6 @@ import java.util.ArrayList;
 @Setter
 public class VideoEditRequest {
 
-    @NotEmpty
-    private String id;
-
     private String titulo;
 
     private String description;

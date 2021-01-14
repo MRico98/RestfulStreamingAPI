@@ -34,14 +34,14 @@ public class VideoController{
                 .body(videoContent.getSecond());
     }
   
-    @DeleteMapping("/delete")
-    public ResponseEntity<Video> deleteVideo(@RequestParam String id){
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<Video> deleteVideo(@PathVariable("id") String id){
         return ResponseEntity.status(HttpStatus.OK).body(videoService.deleteVideo(id));
     }
 
-    @PutMapping
-    public ResponseEntity<Video> editVideo(@RequestBody @Valid VideoEditRequest videoEditRequest){
-        return ResponseEntity.ok().body(videoService.editVideo(videoEditRequest));
+    @PutMapping("/{id}/edit")
+    public ResponseEntity<Video> editVideo(@PathVariable("id") String id,@RequestBody VideoEditRequest videoEditRequest){
+        return ResponseEntity.ok().body(videoService.editVideo(id,videoEditRequest));
     }
 
 }

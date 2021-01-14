@@ -104,8 +104,8 @@ public class VideoServiceImpl implements VideoService{
     }
       
     @Override
-    public Video editVideo(VideoEditRequest videoEditRequest) {
-        Video videoToEdit = getVideo(videoEditRequest.getId());
+    public Video editVideo(String id,VideoEditRequest videoEditRequest) {
+        Video videoToEdit = getVideo(id);
         videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
         UserUtil.checkUserAuthorization(UserUtil.getActualSession(), videoToEdit);
         //get object refererence and not database entity
