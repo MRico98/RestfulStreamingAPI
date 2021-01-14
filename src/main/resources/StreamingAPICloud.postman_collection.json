@@ -6,13 +6,289 @@
 	},
 	"item": [
 		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "Rate Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDI4MiwiZXhwIjoxNjEwNTkwNTgyfQ.IaBaC0w8LtIVFB2iR_a2EIqoJ4GRlzC6spAHGAI-JF7Q4T8yjYLJrIsL4hY8UoXVTtNerkHI-CHQgPk3dZlEMg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\" : 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/ratings/videos/:video",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ratings",
+								"videos",
+								":video"
+							],
+							"variable": [
+								{
+									"key": "video",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rating of Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDYwNSwiZXhwIjoxNjEwNTkwOTA1fQ.5Wz-4DS6QdiTxXwTBjLI12jc4D-qDX2WBK33rXIGsclJYHJn5U89ngtfQepa7BWehRja1gjqjscNcR89DqtPjg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\" : 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/ratings/videos/:video",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ratings",
+								"videos",
+								":video"
+							],
+							"variable": [
+								{
+									"key": "video",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Video Rating of User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDI4MiwiZXhwIjoxNjEwNTkwNTgyfQ.IaBaC0w8LtIVFB2iR_a2EIqoJ4GRlzC6spAHGAI-JF7Q4T8yjYLJrIsL4hY8UoXVTtNerkHI-CHQgPk3dZlEMg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/ratings/videos/:videoId/users/:userId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ratings",
+								"videos",
+								":videoId",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "16"
+								},
+								{
+									"key": "userId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Videos",
+			"item": [
+				{
+					"name": "Upload Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDI4MiwiZXhwIjoxNjEwNTkwNTgyfQ.IaBaC0w8LtIVFB2iR_a2EIqoJ4GRlzC6spAHGAI-JF7Q4T8yjYLJrIsL4hY8UoXVTtNerkHI-CHQgPk3dZlEMg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titulo",
+									"value": "TEST4",
+									"type": "text"
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/C:/Users/diego/Downloads/sd.mp4"
+								},
+								{
+									"key": "clasificaciones",
+									"value": "COMEDIA",
+									"type": "text"
+								},
+								{
+									"key": "clasificaciones",
+									"value": "PORNO",
+									"type": "text"
+								},
+								{
+									"key": "clasificaciones",
+									"value": "TERROR",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/videos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"videos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Watch Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDQxNTE5MiwiZXhwIjoxNjEwNDE1NDkyfQ.fCqDeOkuf2FpTwjACIXErgFFGS3Kgu4XOBfEz71tEU7TLWibNTzHKbe7Df8d5MQPuKP6EgQoh0zNkGAiSVs0qg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Range",
+								"value": "bytes=0-1270000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/videos/watch?id=fztfcxbGMjQNo6kNyG3W4eLv--LmW-N1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"videos",
+								"watch"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "fztfcxbGMjQNo6kNyG3W4eLv--LmW-N1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recommendations",
+			"item": [
+				{
+					"name": "Get User Recommendations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDc3MiwiZXhwIjoxNjEwNTkxMDcyfQ.zB-5kK9Ml8LvplCk0NgvWXp6EiWmDJ62jFrQO2ykFXxh41bvKs6KjAcfwRqh_YX2e4ckTUWGRZ7q9tid1uIxRw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:id/recomendations",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"recomendations"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login Service",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ManuelRico98@outlook.es\",\r\n    \"password\": \"root\"\r\n}",
+					"raw": "{\r\n    \"email\":\"correo@correoalgo.com.mx\",\r\n    \"password\": \"42069\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -29,6 +305,32 @@
 					]
 				},
 				"description": "Endpoint para el inicio de sesión del usuario."
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ThisTest\",\r\n    \"email\": \"correo@correoalgo.com.mx\",\r\n    \"password\": \"42069\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/register",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"register"
+					]
+				}
 			},
 			"response": []
 		},
@@ -136,124 +438,6 @@
 					],
 					"path": [
 						"roleAdmin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Upload Video",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoicmljbyIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjEwMjkxMjEzLCJleHAiOjE2MTAyOTE1MTN9.mQvBnNbffSnYq5aTxMa3trZxrASLI7vdbbavO_KKYoC38-Sa4YY6E5opZLB2KXQ2ov1fnqh8M1-iXUfWgn7eLQ",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "titulo",
-							"value": "TEST4",
-							"type": "text"
-						},
-						{
-							"key": "video",
-							"type": "file",
-							"src": "/C:/Users/diego/Downloads/sd.mp4"
-						},
-						{
-							"key": "clasificaciones",
-							"value": "COMEDIA",
-							"type": "text"
-						},
-						{
-							"key": "clasificaciones",
-							"value": "PORNO",
-							"type": "text"
-						},
-						{
-							"key": "clasificaciones",
-							"value": "TERROR",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/videoupload",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"videoupload"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"DiegoAvmor\",\r\n    \"email\": \"correo@uady.com.mx\",\r\n    \"password\": \"gordito25\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/register",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get User Recommendations",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoicmljbyIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjEwMjkyMDczLCJleHAiOjE2MTAyOTIzNzN9.safGkCeqqbFxBy6eQYDAs46vGeh6Co51WqrpNvVYSjj1ElAnDGnl-jLllP0cFsR43KK6F78bzhf9-PxURBAoLw",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/users/:id/recomendations",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						":id",
-						"recomendations"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "2"
-						}
 					]
 				}
 			},
