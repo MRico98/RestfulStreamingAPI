@@ -2,18 +2,22 @@ package com.api.streaming.service.impl;
 
 import com.api.streaming.config.StorageProperties;
 import com.api.streaming.controller.VideoController;
+import com.api.streaming.exception.AccessDeniedException;
 import com.api.streaming.exception.FailChargeException;
 import com.api.streaming.exception.IncorrectFileException;
 import com.api.streaming.model.Clasification;
 import com.api.streaming.model.User;
 import com.api.streaming.model.Video;
 import com.api.streaming.model.VideoClasification;
+import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.service.UserService;
 import com.api.streaming.service.VideoClasificationService;
 import com.api.streaming.util.TokenGenerator;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.repository.VideoRepository;
 import com.api.streaming.service.VideoService;
+import com.api.streaming.util.UserUtil;
+import org.jose4j.jwk.Use;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +27,11 @@ import org.springframework.data.util.Pair;
 import org.springframework.http.HttpRange;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -69,7 +75,7 @@ public class VideoServiceImpl implements VideoService{
         }
         String videoId = TokenGenerator.generadorTokens();
         storageProcess(request.getVideo(),videoId);
-        Video newVideo = createVideoEntity(request.getTitulo(),videoId);
+        Video newVideo = createVideoEntity(request,videoId);
         newVideo = videoRepository.save(newVideo);
         createClasificationEntities(newVideo,request.getClasificaciones());
         return newVideo;
@@ -87,6 +93,34 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public Video getVideo(String id) {
         return videoRepository.findByIdSerializable(id).get();
+    }
+
+    @Override
+    public Video deleteVideo(String id) {
+        Video videoToEliminate = videoRepository.findByIdSerializable(id).get();
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(), videoToEliminate);
+        videoRepository.deleteVideoByIdSerializable(id);
+        return videoToEliminate;
+    }
+      
+    @Override
+    public Video editVideo(String id,VideoEditRequest videoEditRequest) {
+        Video videoToEdit = getVideo(id);
+        videoClasificationService.deleteMultipleVideoClasification(videoToEdit.getId());
+        UserUtil.checkUserAuthorization(UserUtil.getActualSession(), videoToEdit);
+        //get object refererence and not database entity
+        Video videoReference = videoRepository.getOne(videoToEdit.getId());
+        videoReference = setVideoReferenceValues(videoReference,videoEditRequest);
+        return videoRepository.save(videoReference);
+    }
+
+    private Video setVideoReferenceValues(Video videoReference,VideoEditRequest videoEditRequest){
+        if(videoEditRequest.getDescription() != null) videoReference.setDescription(videoEditRequest.getDescription());
+        if(videoEditRequest.getTitulo() != null) videoReference.setTitulo(videoEditRequest.getTitulo());
+        if(videoEditRequest.getClasificaciones() != null) videoReference.
+                setVideosClasification(videoClasificationService.
+                        storeMultipleVideoClasification(videoReference,videoEditRequest.getClasificaciones()));
+        return videoReference;
     }
 
     private ResourceRegion getPartialVideoContent(UrlResource video,HttpRange rangoVideo){
@@ -111,11 +145,12 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private Video createVideoEntity(String titulo, String videoId){
+    private Video createVideoEntity(VideoUploadRequest videoUploadRequest, String videoId){
         Video nuevoVideo = new Video();
         nuevoVideo.setIdSerializable(videoId);
-        nuevoVideo.setAutor(userService.getUser(getActualSessionId()));
-        nuevoVideo.setTitulo(titulo);
+        nuevoVideo.setAutor(userService.getUser(UserUtil.getActualSession().getId()));
+        nuevoVideo.setTitulo(videoUploadRequest.getTitulo());
+        nuevoVideo.setDescription(videoUploadRequest.getDescription());
         nuevoVideo.setLocation(this.rootLocation.toString()+"/" + videoId + ".mp4");
         return nuevoVideo;
     }
@@ -135,8 +170,4 @@ public class VideoServiceImpl implements VideoService{
         }
     }
 
-    private int getActualSessionId(){
-        User actualUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return actualUser.getId();
-    }
 }

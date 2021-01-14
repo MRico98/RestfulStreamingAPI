@@ -8,4 +8,5 @@ import java.util.ArrayList;
 
 public interface VideoClasificationService {
     ArrayList<VideoClasification> storeMultipleVideoClasification(Video video, ArrayList<Clasification> clasificaciones);
+    void deleteMultipleVideoClasification(Integer id);
 }

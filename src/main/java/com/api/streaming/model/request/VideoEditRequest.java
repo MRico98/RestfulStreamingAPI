@@ -3,25 +3,17 @@ package com.api.streaming.model.request;
 import com.api.streaming.model.Clasification;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Getter
 @Setter
-public class VideoUploadRequest {
+public class VideoEditRequest {
 
-    @NotEmpty
     private String titulo;
 
     private String description;
 
-    @NotNull
-    private MultipartFile video;
-
     private ArrayList<Clasification> clasificaciones;
-
 }
