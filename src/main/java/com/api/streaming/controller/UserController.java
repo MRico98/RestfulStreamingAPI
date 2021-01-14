@@ -31,9 +31,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RatingService ratingService;
-
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody @Valid LoginUserRequest request) {
         return ResponseEntity.ok().body(userService.loadUser(request));
@@ -70,18 +67,6 @@ public class UserController {
     @GetMapping("/users/{id}/recomendations")
     public ResponseEntity<List<UserRecommendation>> getRecommendation(@PathVariable Integer id){
         return ResponseEntity.ok().body(userService.getRecommendations(id));
-    }
-
-    @PostMapping("/rate/{id}")
-    public ResponseEntity<Rating> rateVideo(@PathVariable Integer id, @RequestBody @Valid RatingRequest request){
-        
-        return ResponseEntity.ok().body(ratingService.crearRating(id, request));
-    }
-
-    @GetMapping("/rate/{userId}/{videoId}")
-    public ResponseEntity<Rating> rateVideo(@PathVariable Integer userId, @PathVariable Integer videoId){
-        
-        return ResponseEntity.ok().body(ratingService.getRating(userId, videoId));
     }
 
     

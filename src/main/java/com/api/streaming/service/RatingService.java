@@ -10,8 +10,7 @@ public interface RatingService {
 
     public Rating getRating(int userId, int videoId);
 
-    public void actualizarRating(int videoId);
+    public Rating updateRating(Integer id, RatingRequest request);
 
-    public void validateCreateRating(int videoId, int userId);
 
 }

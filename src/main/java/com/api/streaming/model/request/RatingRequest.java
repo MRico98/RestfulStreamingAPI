@@ -1,6 +1,7 @@
 package com.api.streaming.model.request;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +10,7 @@ import lombok.Setter;
 @Setter
 public class RatingRequest {
 
-    //@NotEmpty
-    //private int idUser;
-
-    @NotEmpty
-    private int video;
-
-    @NotEmpty
+    @NotNull
     private Integer rating;
 
 }
