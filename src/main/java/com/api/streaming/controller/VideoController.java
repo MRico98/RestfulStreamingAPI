@@ -6,8 +6,6 @@ import com.api.streaming.model.Video;
 import com.api.streaming.model.request.VideoEditRequest;
 import com.api.streaming.model.request.VideoUploadRequest;
 import com.api.streaming.service.VideoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
