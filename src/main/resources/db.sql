@@ -25,7 +25,8 @@ CREATE TABLE `videos` (
   `description` text,
   `average_rating` float default 0,
   `created_at` timestamp,
-  `video_location` text
+  `video_location` text,
+  FULLTEXT (titulo,description)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_ratings` (
