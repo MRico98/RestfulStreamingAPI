@@ -31,6 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +49,9 @@ import java.util.Objects;
 
 @Service
 public class VideoServiceImpl implements VideoService{
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     Logger logger = LoggerFactory.getLogger(VideoServiceImpl.class);
 
@@ -65,6 +72,13 @@ public class VideoServiceImpl implements VideoService{
     @Autowired
     public VideoServiceImpl(StorageProperties storageProperties){
         this.rootLocation = Paths.get(storageProperties.getLocation());
+    }
+
+    @Override
+    public List<Video> searchVideos(String query) {
+        String queryForm = "SELECT * FROM videos WHERE MATCH (titulo,description) AGAINST ('" + query + "' IN BOOLEAN MODE)";
+        List<Video> videos =(List<Video>)entityManager.createNativeQuery(queryForm,Video.class).getResultList();
+        return videos;
     }
 
     @Override

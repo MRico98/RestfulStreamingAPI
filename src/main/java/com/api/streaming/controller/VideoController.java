@@ -14,12 +14,19 @@ import org.springframework.http.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/videos")
 public class VideoController{
 
     @Autowired
     private VideoService videoService;
+
+    @GetMapping
+    public ResponseEntity<List<Video>> videoSearchByQuery(@RequestParam String query){
+        return ResponseEntity.ok().body(videoService.searchVideos(query));
+    }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Video> videoUpload(@ModelAttribute @Valid VideoUploadRequest request){
