@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDI4MiwiZXhwIjoxNjEwNTkwNTgyfQ.IaBaC0w8LtIVFB2iR_a2EIqoJ4GRlzC6spAHGAI-JF7Q4T8yjYLJrIsL4hY8UoXVTtNerkHI-CHQgPk3dZlEMg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTY0NywiZXhwIjoxNjExNDI5OTQ3fQ.KWa2CEyVeTTnALdiad3xJ0S4s_24dn9YCkvbjZkDor_Nzyy1s3h2Wq18c6vNIBlP6YFF2f6LV1-W7fwJRnfBQA",
 									"type": "string"
 								}
 							]
@@ -45,7 +45,7 @@
 							"variable": [
 								{
 									"key": "video",
-									"value": "16"
+									"value": "1"
 								}
 							]
 						}
@@ -136,6 +136,41 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTc1OSwiZXhwIjoxNjExNDMwMDU5fQ.f5N6dESHk5LTFO1C_q0DnSbaf2Pt-f6SBLQ-u2i8Dvq1GqkHn9TYCYUCiRi1VYkt3UabsFScCK4_-lpuuABodg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/ratings/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ratings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "rating id"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -150,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDI4MiwiZXhwIjoxNjEwNTkwNTgyfQ.IaBaC0w8LtIVFB2iR_a2EIqoJ4GRlzC6spAHGAI-JF7Q4T8yjYLJrIsL4hY8UoXVTtNerkHI-CHQgPk3dZlEMg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTI2MSwiZXhwIjoxNjExNDI5NTYxfQ.JdFwO7vDfuZOLDAXeXWdFLmY-IOJppmt49nTbCeFFV9tRE8YrbaOzwu3DD8HpC4Y8kWMIsNF-tp7bnljOD8XHw",
 									"type": "string"
 								}
 							]
@@ -184,6 +219,11 @@
 									"key": "clasificaciones",
 									"value": "TERROR",
 									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is the description",
+									"type": "text"
 								}
 							]
 						},
@@ -207,7 +247,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDQxNTE5MiwiZXhwIjoxNjEwNDE1NDkyfQ.fCqDeOkuf2FpTwjACIXErgFFGS3Kgu4XOBfEz71tEU7TLWibNTzHKbe7Df8d5MQPuKP6EgQoh0zNkGAiSVs0qg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNTY3OCwiZXhwIjoxNjEwODE1OTc4fQ.UFEiOIjRn_jPcPA4oV1hgl52PZyMUXniBm4tM_tTiBc29R0o6I7qF2q-u6n00Yb8A_cf5semYfjbxFCpkdBoeQ",
 									"type": "string"
 								}
 							]
@@ -221,7 +261,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/videos/watch?id=fztfcxbGMjQNo6kNyG3W4eLv--LmW-N1",
+							"raw": "{{BASE_URL}}/videos/watch?id=67PqVKRsUH_IA3gPZJJN_psNiOv9zqGj",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -232,7 +272,98 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "fztfcxbGMjQNo6kNyG3W4eLv--LmW-N1"
+									"value": "67PqVKRsUH_IA3gPZJJN_psNiOv9zqGj"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTI2MSwiZXhwIjoxNjExNDI5NTYxfQ.JdFwO7vDfuZOLDAXeXWdFLmY-IOJppmt49nTbCeFFV9tRE8YrbaOzwu3DD8HpC4Y8kWMIsNF-tp7bnljOD8XHw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Range",
+								"value": "bytes=0-1270000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"This is a new tittle\",\r\n    \"description\": \"Changed description\",\r\n    \"clasificaciones\": [\r\n        \"COMEDIA\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/videos/:id/edit",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"videos",
+								":id",
+								"edit"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "XmSBTtyph_g6mA-TncMsacW36Dcf1b5k"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNjIyMSwiZXhwIjoxNjEwODE2NTIxfQ.1ENAtRjB4ZJb-7IlNwNDAtV7TQ2iNFwxNGW7HqlHdQ4exHoEicPeFCEFhrq3JbztCq0I7idOotBxCC1fRQqzQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Range",
+								"value": "bytes=0-1270000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/videos/:id/delete",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"videos",
+								":id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "DU0uzUgXhKAViMdGj70igdXYvGkiZ-TM"
 								}
 							]
 						}
@@ -342,7 +473,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDg5NSwiZXhwIjoxNjA3ODAxMTk1fQ.bm-P-P0D9SWH0KdRHXEmhqO5mHFnXcZ-ryvMoFk4iZvGAkSC8A32_3kk0vYYxsVPyh7JHl_2-bOxWRwvUjt5EA",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNTY3OCwiZXhwIjoxNjEwODE1OTc4fQ.UFEiOIjRn_jPcPA4oV1hgl52PZyMUXniBm4tM_tTiBc29R0o6I7qF2q-u6n00Yb8A_cf5semYfjbxFCpkdBoeQ",
 							"type": "string"
 						}
 					]
@@ -350,13 +481,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASE_URL}}/users/1",
+					"raw": "{{BASE_URL}}/users/2",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
 						"users",
-						"1"
+						"2"
 					]
 				}
 			},
