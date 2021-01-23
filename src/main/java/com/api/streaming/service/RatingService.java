@@ -12,5 +12,6 @@ public interface RatingService {
 
     public Rating updateRating(Integer id, RatingRequest request);
 
+    public Rating deleteRating(Integer id);
 
 }
