@@ -89,4 +89,14 @@ public class RatingServiceImpl implements RatingService{
         }
         throw new NotFoundException("No se encontro la calificación asignado por el usuario indicado");
     }
+
+    @Override
+    public Rating deleteRating(Integer id) {
+        Optional<Rating> rating = ratingRepository.findById(id);
+        if(rating.isPresent()){
+            ratingRepository.deleteById(id);
+            return rating.get();
+        }
+        throw new NotFoundException("La calificacion no existe");
+    }
 }
