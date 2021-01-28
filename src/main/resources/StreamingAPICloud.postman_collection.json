@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTY0NywiZXhwIjoxNjExNDI5OTQ3fQ.KWa2CEyVeTTnALdiad3xJ0S4s_24dn9YCkvbjZkDor_Nzyy1s3h2Wq18c6vNIBlP6YFF2f6LV1-W7fwJRnfBQA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0Iiwic3ViIjoiTmV3VXNlciIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjExODc1NTI3LCJleHAiOjE2MTE4NzU4Mjd9.hh9V30gO0q9ykyoZP17WxVuIAE1bhhbR2n7heXBm4mMysM-OEvO3BIaIC9mkNO-Gk38reM4LABslOMr9P1xiCQ",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rating\" : 10\r\n}",
+							"raw": "{\r\n    \"rating\" : 8\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -60,7 +60,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2Iiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDU5MDYwNSwiZXhwIjoxNjEwNTkwOTA1fQ.5Wz-4DS6QdiTxXwTBjLI12jc4D-qDX2WBK33rXIGsclJYHJn5U89ngtfQepa7BWehRja1gjqjscNcR89DqtPjg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0Iiwic3ViIjoiTmV3VXNlciIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjExODc1NjI5LCJleHAiOjE2MTE4NzU5Mjl9.jXg90M67pcHxzYrByE0lQRWNFi9_Mui-ZL8ww-ZyqXfqr3a2xm4mG8tQgCXMVUf7Sk0DekWXZR7iCEkM0OXcnQ",
 									"type": "string"
 								}
 							]
@@ -69,7 +69,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rating\" : 5\r\n}",
+							"raw": "{\r\n    \"rating\" : 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -89,7 +89,7 @@
 							"variable": [
 								{
 									"key": "video",
-									"value": "16"
+									"value": "1"
 								}
 							]
 						}
@@ -145,7 +145,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTc1OSwiZXhwIjoxNjExNDMwMDU5fQ.f5N6dESHk5LTFO1C_q0DnSbaf2Pt-f6SBLQ-u2i8Dvq1GqkHn9TYCYUCiRi1VYkt3UabsFScCK4_-lpuuABodg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoicmljbyIsImlzcyI6IklubmVyQ2lyY2xlIiwiaWF0IjoxNjExODc1ODAyLCJleHAiOjE2MTE4NzYxMDJ9.Lmnu0XQFI0c0YM1wHLc75uXzWJJlrWORUd6XIoAM1lh-j_27TbWuJdQapwQfAzJXWYHQoyKhiWNPbYmY-UcSaw",
 									"type": "string"
 								}
 							]
@@ -185,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTI2MSwiZXhwIjoxNjExNDI5NTYxfQ.JdFwO7vDfuZOLDAXeXWdFLmY-IOJppmt49nTbCeFFV9tRE8YrbaOzwu3DD8HpC4Y8kWMIsNF-tp7bnljOD8XHw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTg3NTI0NiwiZXhwIjoxNjExODc1NTQ2fQ.FdGpY9HOvtnG4OeiIy9MuF6-mGKjc96pYq3Y6lByZOgiAPBVexGS59uMVH1ISCRwHljBmdBtOb788Fml_ygOyQ",
 									"type": "string"
 								}
 							]
@@ -197,7 +197,7 @@
 							"formdata": [
 								{
 									"key": "titulo",
-									"value": "TEST4",
+									"value": "TestNew",
 									"type": "text"
 								},
 								{
@@ -287,7 +287,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTQyOTI2MSwiZXhwIjoxNjExNDI5NTYxfQ.JdFwO7vDfuZOLDAXeXWdFLmY-IOJppmt49nTbCeFFV9tRE8YrbaOzwu3DD8HpC4Y8kWMIsNF-tp7bnljOD8XHw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTg3NTI0NiwiZXhwIjoxNjExODc1NTQ2fQ.FdGpY9HOvtnG4OeiIy9MuF6-mGKjc96pYq3Y6lByZOgiAPBVexGS59uMVH1ISCRwHljBmdBtOb788Fml_ygOyQ",
 									"type": "string"
 								}
 							]
@@ -310,19 +310,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/videos/:id/edit",
+							"raw": "{{BASE_URL}}/videos/:id",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"videos",
-								":id",
-								"edit"
+								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "XmSBTtyph_g6mA-TncMsacW36Dcf1b5k"
+									"value": "a-sSuALZeDUQk17W6QppwNchJE8W3Ayj"
 								}
 							]
 						}
@@ -337,7 +336,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNjIyMSwiZXhwIjoxNjEwODE2NTIxfQ.1ENAtRjB4ZJb-7IlNwNDAtV7TQ2iNFwxNGW7HqlHdQ4exHoEicPeFCEFhrq3JbztCq0I7idOotBxCC1fRQqzQw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTg3NTQwOCwiZXhwIjoxNjExODc1NzA4fQ.CdIh-6Ic49k5LMYj_nNqYq4BsbaXdWkNbf7XRjvMszqYzW1eHz2IE0YlEw7csjpyL7VDwZJFwQRat59BEK_QXg",
 									"type": "string"
 								}
 							]
@@ -347,23 +346,23 @@
 							{
 								"key": "Range",
 								"value": "bytes=0-1270000",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/videos/:id/delete",
+							"raw": "{{BASE_URL}}/videos/:id",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"videos",
-								":id",
-								"delete"
+								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "DU0uzUgXhKAViMdGj70igdXYvGkiZ-TM"
+									"value": "a-sSuALZeDUQk17W6QppwNchJE8W3Ayj"
 								}
 							]
 						}
@@ -413,13 +412,206 @@
 			]
 		},
 		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNTY3OCwiZXhwIjoxNjEwODE1OTc4fQ.UFEiOIjRn_jPcPA4oV1hgl52PZyMUXniBm4tM_tTiBc29R0o6I7qF2q-u6n00Yb8A_cf5semYfjbxFCpkdBoeQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Recommendations (APP 2)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDg5NSwiZXhwIjoxNjA3ODAxMTk1fQ.bm-P-P0D9SWH0KdRHXEmhqO5mHFnXcZ-ryvMoFk4iZvGAkSC8A32_3kk0vYYxsVPyh7JHl_2-bOxWRwvUjt5EA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/generate",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/roleUser",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"roleUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/roleAdmin",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"roleAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiVXBkYXRlZE5hbWUiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTg3NTExNiwiZXhwIjoxNjExODc1NDE2fQ.OxjMinsWJ-82rFs04PWgciFwNREy0OQeCk0gJTqhCLaWXW3ohP18FOrdmu363QzbP7iQTH5Kd66ipO23PdYuFA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "Id del usuario"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiVXBkYXRlZE5hbWUiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMTg3NTAwMCwiZXhwIjoxNjExODc1MzAwfQ.hXzawVSzApHG3SAU3i09ntLR4Ps8DyDMTKIbYe7-hegHdcVJplsfUmB2n0-VcO1IhGGhmIpBWbLh_2UKxXgIAA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"UpdatedName\",\r\n    \"email\": \"correo@correonuevo.com.mx\",\r\n    \"password\": \"123456789\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"description": "Id del usuario",
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login Service",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"correo@correoalgo.com.mx\",\r\n    \"password\": \"42069\"\r\n}",
+					"raw": "{\r\n    \"email\":\"ManuelRico98@outlook.es\",\r\n    \"password\": \"root\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -446,7 +638,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"ThisTest\",\r\n    \"email\": \"correo@correoalgo.com.mx\",\r\n    \"password\": \"42069\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"NewUser\",\r\n    \"email\": \"correo@algo.com\",\r\n    \"password\": \"42069\",\r\n    \"preferences\": [\r\n        \"COMEDIA\",\r\n        \"TERROR\",\r\n        \"PORNO\",\r\n        \"SUSPENSO\",\r\n        \"DRAMA\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -460,115 +652,6 @@
 					],
 					"path": [
 						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get User",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyIiwic3ViIjoiVGhpc1Rlc3QiLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYxMDgxNTY3OCwiZXhwIjoxNjEwODE1OTc4fQ.UFEiOIjRn_jPcPA4oV1hgl52PZyMUXniBm4tM_tTiBc29R0o6I7qF2q-u6n00Yb8A_cf5semYfjbxFCpkdBoeQ",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/users/2",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Generate Recommendations (APP 2)",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDg5NSwiZXhwIjoxNjA3ODAxMTk1fQ.bm-P-P0D9SWH0KdRHXEmhqO5mHFnXcZ-ryvMoFk4iZvGAkSC8A32_3kk0vYYxsVPyh7JHl_2-bOxWRwvUjt5EA",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/generate",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"generate"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Role User",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/roleUser",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"roleUser"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Role Admin",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxIiwic3ViIjoiRGllZ28iLCJpc3MiOiJJbm5lckNpcmNsZSIsImlhdCI6MTYwNzgwMDM4MSwiZXhwIjoxNjA3ODAwNjgxfQ.q63s2tES0jYjnaftl7l6t0m9LsB9cDf49ck6ezrWZV0H6khpqc3tc0SeZTMn2TYIkgZPVce5UCx8wq0WNa6i0A",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/roleAdmin",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"roleAdmin"
 					]
 				}
 			},

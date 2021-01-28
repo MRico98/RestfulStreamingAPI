@@ -72,12 +72,12 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getRecommendations(id));
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(id));
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/users/{id}")
     public ResponseEntity<User> editUser(@PathVariable("id") Integer id,@RequestBody RegisterUserRequest userRequest){
         return ResponseEntity.ok().body(userService.editUser(id, userRequest));
     }
