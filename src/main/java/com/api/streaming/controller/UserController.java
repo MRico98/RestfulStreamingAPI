@@ -14,12 +14,15 @@ import com.api.streaming.model.request.RatingRequest;
 import com.api.streaming.service.UserService;
 import com.api.streaming.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -69,6 +72,14 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getRecommendations(id));
     }
 
-    
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(id));
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> editUser(@PathVariable("id") Integer id,@RequestBody RegisterUserRequest userRequest){
+        return ResponseEntity.ok().body(userService.editUser(id, userRequest));
+    }
     
 }

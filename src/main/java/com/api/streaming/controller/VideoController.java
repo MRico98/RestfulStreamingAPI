@@ -11,29 +11,28 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.ResourceRegion;
 import org.springframework.data.util.Pair;
 import org.springframework.http.*;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/videos")
+@RequestMapping("/api")
 public class VideoController{
 
     @Autowired
     private VideoService videoService;
 
-    @GetMapping
+    @GetMapping("/videos")
     public ResponseEntity<List<Video>> videoSearchByQuery(@RequestParam String query){
         return ResponseEntity.ok().body(videoService.searchVideos(query));
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, path = "/videos" )
     public ResponseEntity<Video> videoUpload(@ModelAttribute @Valid VideoUploadRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(videoService.storeVideo(request));
     }
 
-    @GetMapping("/watch")
+    @GetMapping("/videos/watch")
     public ResponseEntity<ResourceRegion> watchVideo(@RequestHeader HttpHeaders headers, @RequestParam String id){
         Pair<UrlResource,ResourceRegion> videoContent = videoService.getVideoAndPartialContent(headers.getRange().get(0),id);
         return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
@@ -41,12 +40,12 @@ public class VideoController{
                 .body(videoContent.getSecond());
     }
   
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/videos/{id}")
     public ResponseEntity<Video> deleteVideo(@PathVariable("id") String id){
         return ResponseEntity.status(HttpStatus.OK).body(videoService.deleteVideo(id));
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/videos/{id}")
     public ResponseEntity<Video> editVideo(@PathVariable("id") String id,@RequestBody VideoEditRequest videoEditRequest){
         return ResponseEntity.ok().body(videoService.editVideo(id,videoEditRequest));
     }
