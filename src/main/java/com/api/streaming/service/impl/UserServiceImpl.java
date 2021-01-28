@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.swing.text.html.Option;
 
 import com.api.streaming.exception.NotFoundException;
+import com.api.streaming.exception.AccessDeniedException;
 import com.api.streaming.exception.AlreadyRegistered;
 import com.api.streaming.model.User;
 import com.api.streaming.model.UserPreferencesTags;
@@ -19,10 +20,12 @@ import com.api.streaming.repository.UserPreferencesTagsRepository;
 import com.api.streaming.repository.UserRepository;
 import com.api.streaming.service.UserService;
 import com.api.streaming.util.JwtTokenUtil;
+import com.api.streaming.util.UserUtil;
 import com.api.streaming.model.Clasification;
 import com.api.streaming.model.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -99,4 +102,40 @@ public class UserServiceImpl implements UserService {
         }
         throw new NotFoundException("No se recommendaciones asociadas al usuario");
     }
+
+    @Override
+    public User deleteUser(Integer id){
+        Optional<User> opt = userRepository.findById(id);
+        if(opt.isPresent()){
+            if(UserUtil.getActualSession().getEmail().equals(opt.get().getEmail())){
+                userRepository.delete(opt.get());
+                return opt.get();
+            }
+            throw new AccessDeniedException("No tiene permitido realizar esa instrucción");
+        }
+        throw new NotFoundException("El usuario no fue encontrado");
+    }
+
+    @Override
+    public User editUser(Integer id, RegisterUserRequest request){
+        Optional<User> opt = userRepository.findById(id);
+        Optional<UserPreferencesTags> upt = userPreferencesTagsRepository.findById(id);
+
+        if(opt.isPresent() && upt.isPresent()){
+            if(UserUtil.getActualSession().getEmail().equals(opt.get().getEmail())){
+                opt.get().setEmail(request.getEmail());
+                opt.get().setName(request.getName());
+                opt.get().setPassword(request.getPassword());
+                userRepository.save(opt.get());
+    
+                upt.get().setTag(request.getPreferences().toString());
+                userPreferencesTagsRepository.save(upt.get());
+                
+                return opt.get();
+            }
+            throw new AccessDeniedException("No tiene permitido realizar esa instrucción");
+        }
+        throw new NotFoundException("No se encontró información relacionada");
+    }
+       
 }
