@@ -69,7 +69,7 @@ Los microservicios se tratan de un estilo arquitectónico mediante el cual una a
 
 Esto quiere decir que permite un despliegue rápido, frecuente y confiable de aplicaciones grandes y complejas. Es un elemento fundamental de la optimización del desarrollo de aplicaciones hacia un modelo nativo de la **nube**.
 
-![alt text](mdimages/microservicios.PNG "Arquitectura de Microservicios")
+![alt text](mdimages/microservicios.png "Arquitectura de Microservicios")
 
 Cada función se denomina servicio y se puede diseñar e implementar de forma independiente. Es más, desarrollar utilizando este estilo arquitectónico provee beneficios como:
 * Aplicaciones más rápidas para comercializarse
